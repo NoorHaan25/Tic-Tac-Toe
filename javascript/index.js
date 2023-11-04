@@ -1,32 +1,34 @@
 const box = document.querySelectorAll(".content-box");
 const game = document.getElementById("game");
+const playerX = document.getElementById("player-x");
+const playerO = document.getElementById("player-o");
 const playerOne = document.getElementById("player-one");
 const nameplayerOne = document.getElementById("name-player-one");
 const playerTwo = document.getElementById("player-two");
 const nameplayerTwo = document.getElementById("name-player-two");
 const continueGame = document.getElementById("continue");
+const inputName = document.querySelectorAll(".input-name");
+const cardWarining = document.getElementById("card-warining");
 const startGame = document.getElementById("start-game");
 const winnerPage = document.getElementById("winner");
 let winnerName = document.getElementById("winner-name");
 const gameOver = document.getElementById("game-over");
 const playAgain = document.getElementById("play-again");
 const tryAgain = document.getElementById("try-again");
-const changeName =document.querySelectorAll(".change-name");
+const changeName = document.querySelectorAll(".change-name");
 const namePlayerOne = localStorage.getItem("name-player-one");
 const namePlayerTwo = localStorage.getItem("name-player-two");
 let imgBlue = document.getElementById("img-blue");
 let imgRed = document.getElementById("img-red");
 let boxArray = [];
+let currentBox = "x";
 const imgBluee = imgBlue;
 const imgRedd = imgRed;
 console.log("element", imgRed);
 let leftPositionBlue = 0;
 let topPositionBlue = 0;
-
 let leftPositionRed = 0;
 let topPositionRed = 0;
-
-
 while (imgBlue) {
   leftPositionBlue += imgBlue.offsetLeft;
   topPositionBlue += imgBlue.offsetTop;
@@ -40,41 +42,49 @@ while (imgRed) {
 /*         name player one        */
 playerOne.addEventListener("change", () => {
   const namePlayer = playerOne.value;
-  localStorage.setItem("name-player-one", namePlayer)
+  localStorage.setItem("name-player-one", namePlayer);
   nameplayerOne.textContent = namePlayer;
 });
 
 /*         name player two        */
 playerTwo.addEventListener("change", () => {
   const namePlayer = playerTwo.value;
-  localStorage.setItem("name-player-two", namePlayer)
+  localStorage.setItem("name-player-two", namePlayer);
   nameplayerTwo.textContent = namePlayer;
 });
 /*          Button Continue      */
 
 continueGame.addEventListener("click", () => {
-  console.log(startGame);
   if (
     playerOne.value != "" &&
     playerOne.value != null &&
     playerTwo.value != "" &&
     playerTwo.value != null
   ) {
-    // nameplayerOne.textContent = namePlayerOne;
-    // nameplayerTwo.textContent = namePlayerTwo;
     startGame.style.display = "none";
-  
-  } 
+  } else {
+    cardWarining.style.cssText = "display: flex";
+    inputName.forEach((value) => {
+      if (value.value === ""){ 
+        value.classList.add("warining")
+      };
+      setTimeout(() => {
+        cardWarining.style.cssText = "display: none";
+      }, 2000);
+    });
+  }
 });
 
-let currentBox = "x";
+/*          Function Display     */
 function display() {
   box.forEach((element) => {
     element.addEventListener("click", (event) => {
       const value = element.getAttribute("value");
       const index = value - 1;
-      const boxContent = document.querySelector(`.content-box[value="${value}"]`);
-  
+      const boxContent = document.querySelector(
+        `.content-box[value="${value}"]`
+      );
+
       boxArray[index] = currentBox;
       winner(); /* <------ call function Winner    */
       if (currentBox === "x" && boxContent.innerHTML === "") {
@@ -85,6 +95,8 @@ function display() {
         boxContent.innerHTML = currentBox;
         boxContent.style.color = "#335995";
         currentBox = "o";
+        playerX.style.cssText="background-color :rgb(255,255,255)";
+        playerO.style.cssText="background-color :rgb(255,255,255 , 70%)";
       } else if (currentBox === "o" && boxContent.innerHTML === "") {
         imgRedd.style.cssText = `position : absolute; left : ${
           event.x - leftPositionRed + 20
@@ -93,11 +105,13 @@ function display() {
         boxContent.innerHTML = currentBox;
         boxContent.style.color = "#ec1c24";
         currentBox = "x";
+        playerO.style.cssText="background-color :rgb(255,255,255)";
+        playerX.style.cssText="background-color :rgb(255,255,255 , 70%)"
       }
     });
   });
 }
-display()
+display();
 
 /*               function winner            */
 function winner() {
@@ -113,7 +127,7 @@ function winner() {
       boxArray[7] !== undefined) ||
     (boxArray[0] === boxArray[3] &&
       boxArray[0] === boxArray[6] &&
-      boxArray[6] !== undefined) ||
+      boxArray[0] !== undefined) ||
     (boxArray[1] === boxArray[4] &&
       boxArray[1] === boxArray[7] &&
       boxArray[1] !== undefined) ||
@@ -135,9 +149,7 @@ function winner() {
       winnerName.textContent = nameplayerTwo.textContent;
       winnerPage.classList.add("active");
     }
-  }
-
-  if (boxArray.length === 9) {
+  } else if (boxArray.length === 9) {
     let isGameOver = true;
     for (let i = 0; i < boxArray.length; i++) {
       if (boxArray[i] !== "x" && boxArray[i] !== "o") {
@@ -157,7 +169,6 @@ playAgain.addEventListener("click", function () {
   location.reload();
 });
 
-
 /*               Try Again                  */
 tryAgain.addEventListener("click", function () {
   startGame.style.display = "none";
@@ -171,12 +182,11 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// console.log('changeName'  , changeName);
-changeName.forEach((change)=>{
-  change.addEventListener("click" , function () {
-  localStorage.setItem("startGameHidden", "false");
-  location.reload()
-})
-})
+changeName.forEach((change) => {
+  change.addEventListener("click", function () {
+    localStorage.setItem("startGameHidden", "false");
+    location.reload();
+  });
+});
 nameplayerOne.textContent = namePlayerOne;
 nameplayerTwo.textContent = namePlayerTwo;

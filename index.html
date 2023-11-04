@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Shadows+Into+Light&display=swap"
       rel="stylesheet"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,7 +16,7 @@
   <body>
     <section class="game" id="game">
       <div class="container">
-        <div class="player">
+        <div class="player" id="player-x">
           <div class="name-player" id="name-player-one"><span></span></div>
           <div class="img">
             <img src="./img/player-blue.png" id="img-blue" />
@@ -33,38 +33,37 @@
               <img src="./img/right.png" alt="pin-right" />
             </div>
           </div>
-
           <div class="shape-game">
-            <div class="box red">
+            <div class="box">
               <span class="content-box" value="1"></span>
             </div>
-            <div class="box blue">
+            <div class="box">
               <span class="content-box" value="2"></span>
             </div>
-            <div class="box last-column red">
+            <div class="box last-column">
               <span class="content-box" value="3"></span>
             </div>
-            <div class="box blue">
+            <div class="box">
               <span class="content-box" value="4"></span>
             </div>
-            <div class="box red">
+            <div class="box">
               <span class="content-box" value="5"></span>
             </div>
-            <div class="box last-column blue">
+            <div class="box last-column">
               <span class="content-box" value="6"></span>
             </div>
-            <div class="box last-row red">
+            <div class="box last-row">
               <span class="content-box" value="7"></span>
             </div>
-            <div class="box last-row blue">
+            <div class="box last-row">
               <span class="content-box" value="8"></span>
             </div>
-            <div class="box last-row last-column red">
+            <div class="box last-row last-column">
               <span class="content-box" value="9"></span>
             </div>
           </div>
         </div>
-        <div class="player">
+        <div class="player" id="player-o">
           <div class="name-player" id="name-player-two"><span></span></div>
           <div class="img">
             <img src="./img/played-red.png" id="img-red" />
@@ -84,11 +83,12 @@
                 type="text"
                 placeholder="Enter name Player X"
                 id="player-one"
+                class="input-name"
               />
             </div>
           </div>
-          <div>
-            <img src="./img/vs (1).png"/>
+          <div class="vs">
+            <img src="./img/vs.png" />
           </div>
           <div class="player-item">
             <div class="img">
@@ -99,8 +99,12 @@
                 type="text"
                 placeholder="Enter name Player X"
                 id="player-two"
+                class="input-name"
               />
             </div>
+          </div>
+          <div class="card-warining" id="card-warining">
+            <h5>Please Enter Your Name</h5>
           </div>
         </div>
         <div class="continue-game">
@@ -109,32 +113,30 @@
       </div>
     </section>
     <div class="winner" id="winner">
-        <div class="content-winner">
-          <div class="img">
-            <img src="./img/celebration (1).png" alt="winner" />
-          </div>
-          <div class="content-name">
-            <span>Ashter</span> <span id="winner-name"></span>
-          </div>
-          <div><button id="play-again">Play Again</button>
-            <button class="change-name">Change Name</button>
-          </div>
+      <div class="content-winner">
+        <div class="content-name">
+          <span>Ashter</span> <span id="winner-name"></span>
         </div>
-        
+        <div class="img">
+          <img src="./img/celebration (1).png" alt="winner" />
+        </div>
+        <div class="buttons">
+          <button id="play-again">Play Again</button>
+          <button class="change-name">Change Name</button>
+        </div>
       </div>
-    
+    </div>
     <div class="game-over" id="game-over">
-        <div class="content-game-over">
-          <div class="img">
-            <img src="./img/sad.png" alt="game-over">
-          </div>
-          <div class="text"><span>game-over</span></div>
-          <div class="button">
-            <button id="try-again">Try Again</button>
-            <button class="change-name">Change Name</button>
-          </div>
+      <div class="content-game-over">
+        <div class="content-name"><span>game-over</span></div>
+        <div class="img">
+          <img src="./img/sad.png" alt="game-over" />
         </div>
-     
+        <div class="buttons">
+          <button id="try-again">Try Again</button>
+          <button class="change-name">Change Name</button>
+        </div>
+      </div>
     </div>
     <script src="./javascript/index.js"></script>
   </body>
