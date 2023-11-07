@@ -116,25 +116,24 @@ body {
   margin: 0 30px;
   position: relative;
   z-index: 5;
-  background-color: rgb(255, 255, 255, 70%);
-  width: 300px;
   height: 300px;
-  border-radius: 15px;
   transition: all 0.8s linear;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .player > .name-player {
+  /* height: 300px; */
   background-color: rgb(255 255 255);
   margin-bottom: 20px;
-  position: absolute;
-  top: -100px;
-  width: 100%;
+  width: 300px;
   height: 65px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 40px;
   border-bottom: 1px solid rgb(0 0 0 / 16%);
-  border-radius: 10px;
+  border-radius: 15px;
   font-family: "Shadows Into Light", cursive;
 }
 .player > .img {
@@ -142,8 +141,11 @@ body {
   align-items: center;
   justify-content: center;
   height: 100%;
-  width: 100%;
+  width: 300px;
+  /* height: 300px */
   position: relative;
+  background-color: rgb(255, 255, 255, 70%);
+  border-radius: 15px;
 }
 .start-game {
   position: fixed;
@@ -173,8 +175,7 @@ body {
 }
 .start-game > .container {
   background-color: #fff;
-  width: 50%;
-  height: 80%;
+  padding: 100px 60px 0;
   border-radius: 20px;
   border: 2px solid rgb(255, 255, 255, 0.7);
   backdrop-filter: blur(15px);
@@ -196,8 +197,8 @@ body {
 .choose-player {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  height: 100%;
+  justify-content: space-evenly;
+  /* height: 80%; */
   position: relative;
 }
 .choose-player > .player-item {
@@ -205,14 +206,24 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin: 20px;
 }
 .input-name {
-  border-color: #8080803d;
+  border: none;
   padding: 15px 17px;
-  border: 1px solid #80808052;
+  border-top: 1px solid #80808052;
   border-radius: 10px;
   font-size: 14px;
   outline: none;
+}
+::-ms-input-placeholder {
+  text-align: center;
+}
+
+::placeholder {
+  text-align: center;
 }
 .warining {
   border: 1px solid #f00;
@@ -225,7 +236,6 @@ body {
   align-items: center;
   justify-content: center;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
-  /* color: #7e7e7e; */
   border-radius: 3px;
   padding: 20px;
   left: 50%;
@@ -235,22 +245,23 @@ body {
   width: 225px;
 }
 .continue-game {
-  position: absolute;
   display: flex;
   justify-content: center;
-  bottom: 46px;
-  left: 50%;
-  transform: translateX(-50%);
+  padding: 50px;
 }
 .continue-game > button {
-  background-color: #000;
+  background: rgb(51, 89, 149);
+  background: linear-gradient(
+    90deg,
+    rgba(51, 89, 149, 1) 0%,
+    rgba(236, 28, 36, 1) 100%
+  );
   border: none;
   padding: 10px 20px;
   color: #fff;
   cursor: pointer;
   border-radius: 5px;
 }
-
 .winner,
 .game-over {
   background-color: rgb(0 0 0 / 73%);
@@ -274,8 +285,6 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 40%;
-  height: 60%;
   z-index: 1;
   border: 2px dashed #000;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
@@ -336,10 +345,82 @@ body {
 .game-over .buttons button:first-child {
   background-color: #eb1b30;
 }
-
 .active {
   display: flex;
 }
 .hide {
   display: none;
+}
+@media screen and (max-width: 1200px) and (min-width: 768px) {
+  .player > .img {
+    width: 200px;
+  }
+  .player > .name-player {
+    width: 200px;
+  }
+}
+@media screen and (max-width: 991.5px) {
+  .start-game > .container {
+    padding: 20px 150px;
+  }
+  .choose-player {
+    flex-direction: column;
+    height: 90%;
+    padding: 10px 0;
+  }
+  .vs {
+    width: 100px;
+    height: 100px;
+  }
+  .vs img {
+    width: 60px;
+  }
+  .player {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 767.5px) {
+  .wrapper-shape {
+    order: 3;
+  }
+  .game .container {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .player {
+    flex-direction: row;
+    width: 100%;
+    height: 150px;
+  }
+  .player > .name-player {
+    background-color: rgb(255 255 255);
+    margin-bottom: 0;
+  }
+  .wrapper-shape {
+    max-width: 100%;
+    width: 380px;
+    height: 380px;
+  }
+  .shape-game {
+    width: 360px;
+    height: 360px;
+  }
+  .pin {
+    top: 0;
+  }
+  .pin-left {
+    left: 0;
+  }
+  .pin-right {
+    right: 0;
+  }
+  .player > .img > img {
+    width: 80px;
+  }
+  .player > .img {
+    background-color: unset;
+  }
+  .shape-game > .box > .content-box {
+    font-size: 60px;
+  }
 }

@@ -62,6 +62,7 @@ continueGame.addEventListener("click", () => {
     playerTwo.value != null
   ) {
     startGame.style.display = "none";
+    // game.classList.remove("hide");
   } else {
     cardWarining.style.cssText = "display: flex";
     inputName.forEach((value) => {
